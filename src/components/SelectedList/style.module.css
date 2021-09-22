@@ -1,0 +1,6 @@
+.selectedList {
+   display: flex;
+   column-gap: 10px;
+   row-gap: 5px;
+   flex-wrap: wrap;
+}

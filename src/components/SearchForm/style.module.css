@@ -1,0 +1,23 @@
+.dropdownSearchWrapper {
+   padding: 0px 16px;
+}
+
+.dropdownSearch {
+   background: #f4f4f4;
+   border-radius: 10px;
+   width: 100%;
+   padding: 10px;
+   display: flex;
+   align-items: center;
+   column-gap: 9px;
+}
+
+.dropdownInput {
+   width: 100%;
+   background: inherit;
+   font-size: 16px;
+   line-height: 20px;
+   color: #333333;
+   border: none;
+   outline: none;
+}

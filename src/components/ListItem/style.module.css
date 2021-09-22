@@ -1,0 +1,34 @@
+.item {
+   padding: 14px 16px;
+   border-bottom: 1px solid #f4f4f4;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   user-select: none;
+}
+
+.item:last-child {
+   border-bottom: none;
+}
+
+.itemName {
+   display: flex;
+   column-gap: 10px;
+   align-items: center;
+}
+
+.checkbox {
+   width: 24px;
+   height: 24px;
+   border: 2px solid #c1c1c1;
+   border-radius: 4px;
+   cursor: pointer;
+}
+
+.selected {
+   background: #005ffd;
+   border: 2px solid #0049d9;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
