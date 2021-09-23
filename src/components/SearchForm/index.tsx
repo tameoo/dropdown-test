@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './style.module.css';
 
 interface SearchFormProps {
-   setValue: (data: any) => void;
+   setValue: (data: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const SearchForm: React.FC<SearchFormProps> = ({ setValue }) => {

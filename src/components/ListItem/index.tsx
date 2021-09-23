@@ -5,7 +5,7 @@ interface ListItemProps {
    itemName: string;
    itemImage: string;
    itemCheck: boolean;
-   onSelect: (any: any) => void;
+   onSelect: (data: boolean) => void;
 }
 
 const ListItem: React.FC<ListItemProps> = ({
@@ -14,10 +14,6 @@ const ListItem: React.FC<ListItemProps> = ({
    itemCheck,
    onSelect,
 }) => {
-   const handleClick = () => {
-      onSelect(!itemCheck);
-   };
-
    return (
       <li className={styles.item}>
          <div className={styles.itemName}>
@@ -26,7 +22,7 @@ const ListItem: React.FC<ListItemProps> = ({
          </div>
          <div
             className={`${styles.checkbox} ${itemCheck && styles.selected}`}
-            onClick={handleClick}
+            onClick={() => onSelect(!itemCheck)}
          >
             {itemCheck && (
                <img src="/icons/arrow-check.svg" alt="arrow-check-icon" />

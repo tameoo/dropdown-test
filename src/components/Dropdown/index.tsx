@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
-import { ListItem, SearchForm, SelectedList } from './components';
-import { list } from './mock';
-import styles from './Dropdown.module.css';
+import { ListItem, SearchForm, SelectedList } from '..';
+import { list } from '../../mock';
+import styles from './style.module.css';
 
-const Dropdown = () => {
+const Dropdown: React.FC = () => {
+   const [listLanguages, setListLanguages] = useState<
+      {
+         name: string;
+         image: string;
+         isChecked: boolean;
+      }[]
+   >(list);
    const [isOpen, setOpen] = useState<boolean>(false);
-   const [listLanguages, setListLanguages] = useState(list);
    const [searchValue, setSearchValue] = useState<string>('');
-
-   let noSelectedItems = listLanguages.every(
-      ({ isChecked }) => isChecked === false
-   );
 
    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
       e.preventDefault();
@@ -34,8 +36,11 @@ const Dropdown = () => {
       return listLanguages.filter(({ name }) => regex.test(name));
    };
 
+   const noSelectedItems = listLanguages.every(
+      ({ isChecked }) => isChecked === false
+   );
+
    const visible = !searchValue ? listLanguages : changeVisibleItems();
-   console.log(listLanguages);
 
    return (
       <div className={styles.app}>
@@ -65,25 +70,27 @@ const Dropdown = () => {
                <div className={styles.dropdown}>
                   <SearchForm setValue={handleSearch} />
                   <ul className={styles.list}>
-                     {visible.map(({ name, image, isChecked }, id) => (
-                        <ListItem
-                           key={id}
-                           itemName={name}
-                           itemImage={image}
-                           itemCheck={isChecked}
-                           onSelect={(checked) => {
-                              const index = listLanguages.findIndex(
-                                 ({ name }) => name === name
-                              );
-                              const modify = [
-                                 ...listLanguages.slice(0, index),
-                                 { name, image, isChecked: checked },
-                                 ...listLanguages.slice(index + 1),
-                              ];
-                              setListLanguages(modify);
-                           }}
-                        />
-                     ))}
+                     {visible.map(({ name, image, isChecked }, id) => {
+                        return (
+                           <ListItem
+                              key={id}
+                              itemName={name}
+                              itemImage={image}
+                              itemCheck={isChecked}
+                              onSelect={(isChecked) => {
+                                 const indexOfItem = listLanguages.findIndex(
+                                    (item) => item.name === name
+                                 );
+                                 const modify = [
+                                    ...listLanguages.slice(0, indexOfItem),
+                                    { name, image, isChecked },
+                                    ...listLanguages.slice(indexOfItem + 1),
+                                 ];
+                                 setListLanguages(modify);
+                              }}
+                           />
+                        );
+                     })}
                   </ul>
                </div>
             )}
